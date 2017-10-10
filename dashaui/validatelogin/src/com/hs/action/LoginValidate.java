@@ -8,7 +8,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * 在action中重写validate(),实现自定义验证。需要继承ActionSuptort，它已经自动包含了validate方法。
  */
 public class LoginValidate extends ActionSupport {
-	//属性驱动接受数据。
+	//属性驱动接受数据。。。。
 	private String username;
 	private String password;
 	public String getUsername() {
