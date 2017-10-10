@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app id="WebApp_ID">
+<display-name>validatelogin</display-name>
+	<filter>
+		<filter-name>login</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+	
+</web-app>
