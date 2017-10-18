@@ -1,0 +1,97 @@
+//鉴于廖大师所讲，吓的我赶紧扔掉了记事本换了notepade++
+//这是学习git的笔记
+//参考的廖雪峰的博客
+
+1.创建版本库
+   cd进入项目目录，pwd查看当前目录。git init创建版本库。ls查看当前路径下文件。
+
+2.添加文件
+	git add .    git filt.txt    git commit -m '说明添加的文件'
+	提交文件。这就提交了？
+	
+3.git log 查看当前的文件记录。 git log   --pretty=oneline查看版本号
+
+
+4.回 git reset -- hard HEAD^& 退到上一个版本，但是心版本不存在。
+		返回到git reset head 编号。
+		git号码：git config 显示版本号。
+		
+5.工作区和暂存区
+
+	工作区：本地的能看到的项目的目录
+	版本库：.git 包含了暂存区stage，分支master, master的指针HEAD。
+	
+	git add . 将修改的文件提交到暂存区，git commit -m :将暂存区所有的文件一次性提交到当前的分支。
+6.修改提交问题
+
+	git在提交时，是提交放入暂存区的内容。意思是commit的是add之后的内容。
+
+7.撤销修改
+	可以撤销上一次的修改。git checkout -- file  这里分2情况，如果仅仅是add，那么返回到和版本库一
+样的状态：已经commit,撤销到add之后的状态。
+
+
+			经历：我在test写了一个version1.txt，rm了一下，然后git checkout -- version1.txt  。结果提示我没办法。
+			难道不是这样用的吗？
+			
+		 rm file是删除了工作区的文件，我git checkout恢复不了，是因为没有commit。自然美办法从工作区恢复.
+		 git rm file  是从git中删除.恢复:先从暂缓区清除  git reset fiel ，在从工作区提交commit.
+		 
+8.创建远程库，连接库，推送本地项目到库。
+
+	git remote ssh;    git push -u origin master  第一次提交u功能关联库，以后没必要使用。
+	
+9.克隆远程库到本地
+	git clone ssh.   ssh 比http协议更快
+	
+	   经历：master需要自己创建吗？
+			自己init了一个本地文件夹。默认有master的吧，但是为啥checkout不成功。查无此物。
+			猜想：可能是master和dev重合。在dev中新镇了一个文件。但还是没有查到master。说明本地的master需要新建。
+
+10.分支的合并
+	git branch 查看分支  git branch name 创建分支 git checkout name 
+	git checkout -b name 创建并切换分支  git merge name  合并分支到当前分支,原分支内容依然存在
+	git branch -d name  删除分支
+		
+			道理：master是主干，一直沿着一条线移动。起初，master指向提交到master最新的版本，指针head指向master
+				提交到branch时，head指向branch，合并到master时，head再次回来指向master。
+				
+11.解决冲突
+
+	git log 查看分支合并情况
+	冲突问题：在分支建立一个文件（a=1），然后修改（a=2）放到主区，合并分区到主区，无法合并。
+	   修改文件或者换区提交结决。
+	   
+	   经历：我做了一遍为毛没冲突。a=1和a=3不矛盾吗？还是自己建的master不是当做一个主区来看待的，压根就没有master。
+		其实我感觉本地仓库init之后也该自动创建master啊，为啥这个没有？
+12.分支的合并问题
+	有2种模式： fast forword 快速模式和 --no--ff普通模式
+	git merge --no--ff  name  区别是普通模式可以看到修改的历史信息。
+	
+	干活都在分支，当代码调试确认无误后，发布正式版本合并到master。
+
+13.bug分支
+、
+	手头有在修改的分支，这时需要修改master，并不想提交手头未完成的分支。
+	需要用到git stash 来保存当前的任务。
+	修改完master的bug，然后回来git stash list 查看当前的stash，
+	git stash apply 来恢复  stash信息保留。需要 git stash drop删除
+	git stash pop  不保留信息恢复。
+	
+14.feature分支
+
+	其实绕了一大堆就是说了万一
+	git branch -d name 如果删除失败的话，还可以强制删除 -D
+	
+15. git remote （-v）查看远程库的信息
+	git push  推送分支到库
+	
+16标签tag
+	作用：和commit完全一样，只是commit是数字码，不方便称呼。
+	git tag v1.0  切换到branch，然后打标签。
+		问题：这应该是给当前状态下的所有的文件都打上了？
+	
+	给以前的文件打标签
+	   git tag v1.0  commit id   找到commit id 
+	   git tag v1.0 -m '说明'  commit id  带有说明的标签
+	   git show 显示说明。
