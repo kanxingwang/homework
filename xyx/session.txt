@@ -1,0 +1,11 @@
+Servlet代码： 
+　　String myName="王利虎"; 
+　　HttpSession session=request.getSession(); 
+　　session.setAttribute("MYNAME",myName); 
+JS代码： 
+
+　　<script language="JavaScript"> 
+　　function getMyName(){ 
+   　　var myName="<%=session.getAttribute("MYNAME")%>"; 
+   　　alert(myName); 
+　　} 

@@ -1,0 +1,33 @@
+Array.prototype.filter = Array.prototype.filter || function(func) {
+    var arr = this;
+    var r = [];
+    for (var i = 0; i < arr.length; i++) {
+        if (func(arr[i])) {
+            r.push(arr[i]);
+        }
+    }
+    return r;
+}
+
+
+实现
+var data = [1,2,3,4,5,6,7];
+
+Array.prototype.filterx = Array.prototype.filterx || function(func) {
+    var arr = this;
+    var r = [];
+    for (var i = 0; i < arr.length; i++) {
+        if (func(arr[i])) {
+            r.push(arr[i]);
+        }
+    }
+    return r;
+}
+
+console.log(data.filter(function(t) {
+    return t % 3 > 0;
+}));
+
+console.log(data.filterx(function(t) {
+    return t % 3 > 0;
+}));
